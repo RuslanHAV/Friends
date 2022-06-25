@@ -1,0 +1,40 @@
+<% if user_signed_in? %>
+
+<h1>Friends List</h1>
+
+<table id="friends" class='table table-dark table-striped table-bordered table-hover'>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Twitter</th>
+      <th>User Id</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @friends.each do |friend| %>
+      <%# <%= render friend %>
+      <tr>
+        <td>
+          <%= link_to friend.first_name + ' ' + friend.last_name, friend %>
+        </td>
+        <td><%= friend.email %></td>
+        <td><%= friend.phone %></td>
+        <td><%= friend.twitter %></td>
+        <td><%= friend.user_id %></td>
+        <td>
+          <%= button_to 'Delete', friend, :method => :delete, class: 'btn btn-danger'%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New friend", new_friend_path, class:'btn btn-secondary' %>
+
+<% else %>
+  <h1>Hello World!</h1>
+  <p>This is my home page...</p>
+<% end %>
